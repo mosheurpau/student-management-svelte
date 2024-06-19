@@ -6,46 +6,48 @@
   ];
 </script>
 
-<h2 class="text-3xl font-bold text-green-500 text-center py-5">
-  Student Management svelte
-</h2>
-<div class="navbar shadow-lg">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h8m-8 6h16"
-          /></svg
+<div class="max-w-7xl mx-auto">
+  <h2 class="text-3xl font-bold text-green-500 text-center py-5">
+    Student Management svelte
+  </h2>
+  <div class="navbar shadow-lg">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            /></svg
+          >
+        </div>
+        <ul
+          tabindex="0"
+          class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
+          {#each tabs as tab, index}
+            <li><a href={tab.link}> {tab.name}</a></li>
+          {/each}
+        </ul>
       </div>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-      >
+      <a href="/" class="btn btn-ghost text-xl">daisyUI</a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
         {#each tabs as tab, index}
-          <li><a href={tab.link}> {tab.name}</a></li>
+          <li><a href={tab.link}>{tab.name}</a></li>
         {/each}
       </ul>
     </div>
-    <a href="/" class="btn btn-ghost text-xl">daisyUI</a>
-  </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      {#each tabs as tab, index}
-        <li><a href={tab.link}>{tab.name}</a></li>
-      {/each}
-    </ul>
-  </div>
-  <div class="navbar-end">
-    <p class="btn">Button</p>
+    <div class="navbar-end">
+      <p class="btn">Button</p>
+    </div>
   </div>
 </div>

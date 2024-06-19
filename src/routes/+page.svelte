@@ -2,4 +2,6 @@
   import Main from "../components/Main.svelte";
 </script>
 
-<Main />
+<div class="max-w-7xl mx-auto">
+  <Main />
+</div>

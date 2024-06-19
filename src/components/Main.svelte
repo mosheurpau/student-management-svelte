@@ -12,5 +12,7 @@
   }
 </script>
 
-<AddStudent on:add={addStudent} />
-<StudentList {students} on:delete={deleteStudent} />
+<div class="min-h-screen">
+  <AddStudent on:add={addStudent} />
+  <StudentList {students} on:delete={deleteStudent} />
+</div>
