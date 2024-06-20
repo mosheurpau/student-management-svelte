@@ -6,7 +6,7 @@
   ];
 </script>
 
-<div class="max-w-7xl mx-auto">
+<div class="max-w-7xl mx-auto mb-16">
   <h2 class="text-3xl font-bold text-green-500 text-center py-5">
     Student Management svelte
   </h2>
