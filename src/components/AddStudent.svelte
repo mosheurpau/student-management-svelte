@@ -3,18 +3,24 @@
 
   let name = "";
   let age = "";
+  let studentClass = "";
+  let roll = "";
   const dispatch = createEventDispatcher();
 
   // Reactive statements to check if fields are empty
   $: nameEmpty = !name;
   $: ageEmpty = !age;
+  $: studentClassEmpty = !studentClass;
+  $: rollEmpty = !roll;
 
   function addStudent() {
-    if (name && age) {
+    if (name && age && studentClass && roll) {
       const id = Date.now(); // Generate a unique id based on the current timestamp
-      dispatch("add", { id, name, age });
+      dispatch("add", { id, name, age, studentClass, roll });
       name = "";
       age = "";
+      studentClass = "";
+      roll = "";
     } else {
       // Add some visual indication that the fields are required
       alert("Please fill in all fields");
@@ -40,6 +46,24 @@
     placeholder="Age"
     required
     class="border py-2 px-3 w-full md:w-auto {ageEmpty
+      ? 'border-red-500'
+      : 'border-gray-300'}"
+  />
+  <input
+    bind:value={studentClass}
+    type="number"
+    placeholder="Student Class"
+    required
+    class="border py-2 px-3 w-full md:w-auto {studentClassEmpty
+      ? 'border-red-500'
+      : 'border-gray-300'}"
+  />
+  <input
+    bind:value={roll}
+    type="number"
+    placeholder="Roll Number"
+    required
+    class="border py-2 px-3 w-full md:w-auto {rollEmpty
       ? 'border-red-500'
       : 'border-gray-300'}"
   />

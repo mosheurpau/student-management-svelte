@@ -7,24 +7,38 @@
   let editingId = null;
   let editingName = "";
   let editingAge = "";
+  let editingStudentClass = "";
+  let editingRoll = "";
 
   function startEditing(student) {
     editingId = student.id;
     editingName = student.name;
     editingAge = student.age;
+    editingStudentClass = student.studentClass;
+    editingRoll = student.roll;
   }
 
   function saveEdit() {
-    dispatch("update", { id: editingId, name: editingName, age: editingAge });
+    dispatch("update", {
+      id: editingId,
+      name: editingName,
+      age: editingAge,
+      studentClass: editingStudentClass,
+      roll: editingRoll,
+    });
     editingId = null;
     editingName = "";
     editingAge = "";
+    editingStudentClass = "";
+    editingRoll = "";
   }
 
   function cancelEdit() {
     editingId = null;
     editingName = "";
     editingAge = "";
+    editingStudentClass = "";
+    editingRoll = "";
   }
 </script>
 
@@ -33,6 +47,8 @@
     <tr>
       <th class="py-2 px-4 bg-gray-300 text-left">Name</th>
       <th class="py-2 px-4 bg-gray-300 text-left">Age</th>
+      <th class="py-2 px-4 bg-gray-300 text-left">Student Class</th>
+      <th class="py-2 px-4 bg-gray-300 text-left">Roll</th>
       <th class="py-2 px-4 bg-gray-300 text-left">Actions</th>
     </tr>
   </thead>
@@ -55,6 +71,20 @@
             />
           </td>
           <td class="py-2 px-4 border-b">
+            <input
+              type="number"
+              bind:value={editingStudentClass}
+              class="border py-1 px-2 w-full"
+            />
+          </td>
+          <td class="py-2 px-4 border-b">
+            <input
+              type="number"
+              bind:value={editingRoll}
+              class="border py-1 px-2 w-full"
+            />
+          </td>
+          <td class="py-2 px-4 border-b">
             <button
               class="bg-green-500 text-white py-1 px-2 rounded mr-2"
               on:click={saveEdit}
@@ -73,6 +103,8 @@
         <tr>
           <td class="py-2 px-4 border-b">{student.name}</td>
           <td class="py-2 px-4 border-b">{student.age}</td>
+          <td class="py-2 px-4 border-b">{student.studentClass}</td>
+          <td class="py-2 px-4 border-b">{student.roll}</td>
           <td class="py-2 px-4 border-b">
             <button
               class="bg-blue-500 text-white py-1 px-2 rounded mr-2"
