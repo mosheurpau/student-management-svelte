@@ -1,0 +1,73 @@
+[
+    {
+      "id": 1,
+      "name": "John Doe",
+      "age": 18,
+      "studentClass": "12",
+      "roll": 1
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "age": 17,
+      "studentClass": "11",
+      "roll": 2
+    },
+    {
+      "id": 3,
+      "name": "Ali Khan",
+      "age": 16,
+      "studentClass": "10",
+      "roll": 3
+    },
+    {
+      "id": 4,
+      "name": "Fatima Hasan",
+      "age": 15,
+      "studentClass": "9",
+      "roll": 4
+    },
+    {
+      "id": 5,
+      "name": "David Miller",
+      "age": 19,
+      "studentClass": "12",
+      "roll": 5
+    },
+    {
+      "id": 6,
+      "name": "Emily Garcia",
+      "age": 18,
+      "studentClass": "11",
+      "roll": 6
+    },
+    {
+      "id": 7,
+      "name": "Omar Ahmed",
+      "age": 17,
+      "studentClass": "10",
+      "roll": 7
+    },
+    {
+      "id": 8,
+      "name": "Sophia Lee",
+      "age": 16,
+      "studentClass": "9",
+      "roll": 8
+    },
+    {
+      "id": 9,
+      "name": "Michael Chen",
+      "age": 19,
+      "studentClass": "12",
+      "roll": 9
+    },
+    {
+      "id": 10,
+      "name": "Isabella Rodriguez",
+      "age": 18,
+      "studentClass": "11",
+      "roll": 10
+    }
+  ]
+  

@@ -1,8 +1,16 @@
 <script>
   import StudentList from "./StudentList.svelte";
   import AddStudent from "./AddStudent.svelte";
+  import { onMount } from "svelte";
 
   export let students = [];
+
+  onMount(async () => {
+    const data = await fetch("studentsData.json");
+    const result = await data.json();
+    students = result;
+    console.log(result);
+  });
 
   function addStudent(event) {
     students = [...students, event.detail];
