@@ -60,6 +60,7 @@
       {#each students as student, index}
         {#if editingId === student.id}
           <tr>
+            <td class="py-2 px-4 border-b">{index + 1}</td>
             <td class="py-2 px-4 border-b">
               <input
                 type="text"
