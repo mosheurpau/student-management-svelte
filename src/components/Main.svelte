@@ -25,7 +25,20 @@
   }
 </script>
 
-<div class="min-h-screen">
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-1/3 p-4">
+    <AddStudent on:add={addStudent} />
+  </div>
+  <div class="w-full lg:w-2/3 p-4">
+    <StudentList
+      {students}
+      on:delete={deleteStudent}
+      on:update={updateStudent}
+    />
+  </div>
+</div>
+
+<!-- <div class="min-h-screen">
   <AddStudent on:add={addStudent} />
   <StudentList {students} on:delete={deleteStudent} on:update={updateStudent} />
-</div>
+</div> -->
