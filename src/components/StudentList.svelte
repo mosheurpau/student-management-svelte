@@ -13,7 +13,7 @@
   }
 </script>
 
-<div class="overflow-x-auto">
+<div class="overflow-x-auto shadow-2xl rounded border-2">
   <table class="table table-xs table-pin-rows table-pin-cols">
     <thead>
       <tr>
@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       {#each students as student, Index}
-        <tr>
+        <tr class="hover:shadow-2xl hover:text-black hover:bg-white">
           <td class="py-2 px-4 border-b">{Index + 1}</td>
           <td class="py-2 px-4 border-b">{student.name}</td>
           <td class="py-2 px-4 border-b">{student.gender}</td>
@@ -40,7 +40,7 @@
           <td class="py-2 px-4 border-b">{student.city}</td>
           <td class="py-2 px-4 border-b">
             <button
-              class="bg-green-500 text-white py-1 px-2 rounded"
+              class="bg-green-500 hover:btn-outline text-white py-1 px-2 rounded"
               on:click={() => editStudent(student)}
             >
               Edit
@@ -48,7 +48,7 @@
           </td>
           <td class="py-2 px-4 border-b">
             <button
-              class="bg-red-500 text-white py-1 px-2 rounded"
+              class="bg-red-500 hover:btn-outline text-white py-1 px-2 rounded"
               on:click={() => deleteStudent(student.id)}
             >
               Delete

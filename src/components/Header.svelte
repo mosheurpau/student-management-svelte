@@ -47,7 +47,7 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <p class="btn">Button</p>
+      <button class="btn rounded-2xl">Profile</button>
     </div>
   </div>
 </div>

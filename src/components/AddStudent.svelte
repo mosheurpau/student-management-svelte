@@ -65,17 +65,22 @@
   }
 </script>
 
-<div class="bg-pink-100 p-6 rounded-lg shadow-md">
+<div class=" p-6 rounded-lg shadow-2xl border-2">
   <h2 class="text-xl font-bold mb-4">
-    {editingStudent ? "Edit Student Details" : "Student Registration Form"}
+    {#if editingStudent}
+      Edit <span class="text-green-500">{editingStudent.name}</span> Student Details
+    {:else}
+      Student Registration Form
+    {/if}
   </h2>
+
   <div class="mb-4">
     <label class="block mb-1">Name</label>
     <input
       type="text"
       bind:value={name}
-      class="w-full border p-2 {name === ''
-        ? 'border-red-500'
+      class="w-full border p-2 rounded {name === ''
+        ? 'border-red-200'
         : 'border-gray-300'}"
       placeholder="Type here"
       required
@@ -91,8 +96,8 @@
     <input
       type="number"
       bind:value={age}
-      class="w-full border p-2 {age === ''
-        ? 'border-red-500'
+      class="w-full border p-2 rounded {age === ''
+        ? 'border-red-200'
         : 'border-gray-300'}"
       required
     />
@@ -102,7 +107,7 @@
     <select
       bind:value={country}
       on:change={countryChange}
-      class="w-full border p-2"
+      class="w-full border p-2 rounded"
       required
     >
       <option value="">Select Country</option>
@@ -114,7 +119,7 @@
   </div>
   <div class="mb-4">
     <label class="block mb-1">State</label>
-    <select bind:value={state} class="w-full border p-2" required>
+    <select bind:value={state} class="w-full border p-2 rounded" required>
       <option value="">Select State</option>
       {#if country === "Bangladesh"}
         {#each states.Bangladesh as bdState}
@@ -136,8 +141,8 @@
     <input
       type="text"
       bind:value={city}
-      class="w-full border p-2 {city === ''
-        ? 'border-red-500'
+      class="w-full border p-2 rounded {city === ''
+        ? 'border-red-200'
         : 'border-gray-300'}"
       placeholder="Type here"
       required
@@ -148,7 +153,7 @@
   </div>
   <button
     on:click={addStudent}
-    class="bg-green-500 text-white py-2 px-4 rounded"
+    class="bg-green-500 hover:btn-outline text-white py-2 px-4 rounded"
   >
     {editingStudent ? "Update" : "Submit"}
   </button>
