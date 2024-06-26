@@ -1,5 +1,9 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import { onMount } from "svelte";
+
+  export let editingStudent = null;
+  const dispatch = createEventDispatcher();
 
   let name = "";
   let age = "";
@@ -9,27 +13,62 @@
   let city = "";
   let agreed = false;
 
-  const dispatch = createEventDispatcher();
+  const countryChange = () => {
+    // Reset state selection when country changes
+    state = "";
+  };
+
+  $: states = {
+    Bangladesh: [
+      "Dhaka",
+      "Khulna",
+      "Rajshahi",
+      "Mymensingh",
+      "Rangpur",
+      "Sylhet",
+    ],
+    India: ["Delhi", "Karnataka", "Bangalore", "Hyderabad", "Mumbai"],
+    USA: ["New York", "California", "Texas", "Chicago"],
+  };
+
+  onMount(() => {
+    if (editingStudent) {
+      name = editingStudent.name;
+      age = editingStudent.age;
+      gender = editingStudent.gender;
+      country = editingStudent.country;
+      state = editingStudent.state;
+      city = editingStudent.city;
+      agreed = true;
+    }
+  });
 
   function addStudent() {
     if (name && age && gender && country && state && city && agreed) {
-      const id = Date.now();
+      const id = editingStudent ? editingStudent.id : Date.now();
       dispatch("add", { id, name, age, gender, country, state, city });
-      name = "";
-      age = "";
-      gender = "";
-      country = "";
-      state = "";
-      city = "";
-      agreed = false;
+      resetForm();
     } else {
       alert("Please fill in all fields");
     }
   }
+
+  function resetForm() {
+    name = "";
+    age = "";
+    gender = "";
+    country = "";
+    state = "";
+    city = "";
+    agreed = false;
+    dispatch("cancel");
+  }
 </script>
 
 <div class="bg-pink-100 p-6 rounded-lg shadow-md">
-  <h2 class="text-xl font-bold mb-4">Student Registration Form</h2>
+  <h2 class="text-xl font-bold mb-4">
+    {editingStudent ? "Edit Student Details" : "Student Registration Form"}
+  </h2>
   <div class="mb-4">
     <label class="block mb-1">Name</label>
     <input
@@ -60,7 +99,12 @@
   </div>
   <div class="mb-4">
     <label class="block mb-1">Country</label>
-    <select bind:value={country} class="w-full border p-2" required>
+    <select
+      bind:value={country}
+      on:change={countryChange}
+      class="w-full border p-2"
+      required
+    >
       <option value="">Select Country</option>
       <option value="Bangladesh">Bangladesh</option>
       <option value="India">India</option>
@@ -72,21 +116,19 @@
     <label class="block mb-1">State</label>
     <select bind:value={state} class="w-full border p-2" required>
       <option value="">Select State</option>
-      <option value="Dhaka">Dhaka</option>
-      <option value="Khulna">Khulna</option>
-      <option value="Rajshahi">Rajshahi</option>
-      <option value="Mymensingh">Mymensingh</option>
-      <option value="Rangpur">Rangpur</option>
-      <option value="Sylhet">Sylhet</option>
-
-      <option value="Delhi">Delhi</option>
-      <option value="Delhi2">Delhi2</option>
-      <option value="Delhi2">Delhi2</option>
-      <option value="New York">New York</option>
-      <option value="New York2">New York2</option>
-      <option value="New York3">New York3</option>
-      <option value="New York4">New York4</option>
-      <!-- Add more states as needed -->
+      {#if country === "Bangladesh"}
+        {#each states.Bangladesh as bdState}
+          <option value={bdState}>{bdState}</option>
+        {/each}
+      {:else if country === "India"}
+        {#each states.India as indiaState}
+          <option value={indiaState}>{indiaState}</option>
+        {/each}
+      {:else if country === "USA"}
+        {#each states.USA as usaState}
+          <option value={usaState}>{usaState}</option>
+        {/each}
+      {/if}
     </select>
   </div>
   <div class="mb-4">
@@ -108,6 +150,6 @@
     on:click={addStudent}
     class="bg-green-500 text-white py-2 px-4 rounded"
   >
-    Submit
+    {editingStudent ? "Update" : "Submit"}
   </button>
 </div>

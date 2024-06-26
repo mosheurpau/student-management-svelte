@@ -1,73 +1,92 @@
 [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "age": 18,
-      "studentClass": "12",
-      "roll": 1
-    },
-    {
-      "id": 2,
-      "name": "Jane Doe",
-      "age": 17,
-      "studentClass": "11",
-      "roll": 2
-    },
-    {
-      "id": 3,
-      "name": "Ali Khan",
-      "age": 16,
-      "studentClass": "10",
-      "roll": 3
-    },
-    {
-      "id": 4,
-      "name": "Fatima Hasan",
-      "age": 15,
-      "studentClass": "9",
-      "roll": 4
-    },
-    {
-      "id": 5,
-      "name": "David Miller",
-      "age": 19,
-      "studentClass": "12",
-      "roll": 5
-    },
-    {
-      "id": 6,
-      "name": "Emily Garcia",
-      "age": 18,
-      "studentClass": "11",
-      "roll": 6
-    },
-    {
-      "id": 7,
-      "name": "Omar Ahmed",
-      "age": 17,
-      "studentClass": "10",
-      "roll": 7
-    },
-    {
-      "id": 8,
-      "name": "Sophia Lee",
-      "age": 16,
-      "studentClass": "9",
-      "roll": 8
-    },
-    {
-      "id": 9,
-      "name": "Michael Chen",
-      "age": 19,
-      "studentClass": "12",
-      "roll": 9
-    },
-    {
-      "id": 10,
-      "name": "Isabella Rodriguez",
-      "age": 18,
-      "studentClass": "11",
-      "roll": 10
-    }
-  ]
-  
+  {
+    "id": 1,
+    "name": "Alice",
+    "age": 30,
+    "gender": "Female",
+    "country": "USA",
+    "state": "California",
+    "city": "Los Angeles"
+  },
+  {
+    "id": 2,
+    "name": "Bob",
+    "age": 25,
+    "gender": "Male",
+    "country": "Canada",
+    "state": "Ontario",
+    "city": "Toronto"
+  },
+  {
+    "id": 3,
+    "name": "Charlie",
+    "age": 42,
+    "gender": "Male",
+    "country": "UK",
+    "state": "England",
+    "city": "London"
+  },
+  {
+    "id": 4,
+    "name": "Diana",
+    "age": 18,
+    "gender": "Female",
+    "country": "France",
+    "state": "nknhj",
+    "city": "Paris"
+  },
+  {
+    "id": 5,
+    "name": "Ethan",
+    "age": 55,
+    "gender": "Male",
+    "country": "Australia",
+    "state": "New South Wales",
+    "city": "Sydney"
+  },
+  {
+    "id": 6,
+    "name": "Fiona",
+    "age": 38,
+    "gender": "Female",
+    "country": "Germany",
+    "state": "Bavaria", 
+    "city": "Berlin"
+  },
+  {
+    "id": 7,
+    "name": "Gabriel",
+    "age": 22,
+    "gender": "Male",
+    "country": "India",
+    "state": "hgvf",
+    "city": "Delhi"
+  },
+  {
+    "id": 8,
+    "name": "Hannah",
+    "age": 47,
+    "gender": "Female",
+    "country": "Brazil",
+    "state": "Rio de Janeiro",  
+    "city": "São Paulo"
+  },
+  {
+    "id": 9,
+    "name": "Isaac",
+    "age": 61,
+    "gender": "Male",
+    "country": "China",
+    "state": "hgg",
+    "city": "Beijing"
+  },
+  {
+    "id": 10,
+    "name": "Jessica",
+    "age": 19,
+    "gender": "Female",
+    "country": "Japan",
+    "state": "gfgh",
+    "city": "Tokyo"
+  }
+]
