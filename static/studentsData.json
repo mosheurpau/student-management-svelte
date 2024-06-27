@@ -6,52 +6,58 @@
     "gender": "Female",
     "country": "USA",
     "state": "California",
-    "city": "Los Angeles"
+    "city": "Los Angeles",
+    "agreed": true
   },
   {
     "id": 2,
     "name": "Bob",
     "age": 25,
     "gender": "Male",
-    "country": "Canada",
-    "state": "Ontario",
-    "city": "Toronto"
+    "country": "USA",
+    "state": "California",
+    "city": "Toronto",
+    "agreed": true
   },
   {
     "id": 3,
     "name": "Charlie",
     "age": 42,
     "gender": "Male",
-    "country": "UK",
-    "state": "England",
-    "city": "London"
+    "country": "USA",
+    "state": "California",
+    "city": "London",
+    "agreed": true
   },
   {
     "id": 4,
     "name": "Diana",
     "age": 18,
     "gender": "Female",
-    "country": "France",
-    "state": "nknhj",
-    "city": "Paris"
+    "country": "USA",
+    "state": "California",
+    "city": "Paris",
+    "agreed": true
   },
   {
     "id": 5,
     "name": "Ethan",
     "age": 55,
     "gender": "Male",
-    "country": "Australia",
-    "state": "New South Wales",
-    "city": "Sydney"
+    "country": "USA",
+    "state": "California",
+    "city": "Sydney",
+    "agreed": true
   },
   {
     "id": 6,
     "name": "Fiona",
     "age": 38,
     "gender": "Female",
-    "country": "Germany",
-    "state": "Bavaria", 
-    "city": "Berlin"
+    "country": "USA",
+    "state": "California", 
+    "city": "Berlin",
+    "agreed": true
   },
   {
     "id": 7,
@@ -59,34 +65,38 @@
     "age": 22,
     "gender": "Male",
     "country": "India",
-    "state": "hgvf",
-    "city": "Delhi"
+    "state": "Hyderabad",
+    "city": "Delhi",
+    "agreed": true
   },
   {
     "id": 8,
     "name": "Hannah",
     "age": 47,
     "gender": "Female",
-    "country": "Brazil",
-    "state": "Rio de Janeiro",  
-    "city": "São Paulo"
+    "country": "India",
+    "state": "Hyderabad",  
+    "city": "São Paulo",
+    "agreed": true
   },
   {
     "id": 9,
     "name": "Isaac",
     "age": 61,
     "gender": "Male",
-    "country": "China",
-    "state": "hgg",
-    "city": "Beijing"
+    "country": "India",
+    "state": "Hyderabad",
+    "city": "Beijing",
+    "agreed": true
   },
   {
     "id": 10,
     "name": "Jessica",
     "age": 19,
     "gender": "Female",
-    "country": "Japan",
-    "state": "gfgh",
-    "city": "Tokyo"
+    "country": "India",
+    "state": "Hyderabad",
+    "city": "Tokyo",
+    "agreed": true
   }
 ]

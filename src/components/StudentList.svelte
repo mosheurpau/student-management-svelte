@@ -29,9 +29,9 @@
       </tr>
     </thead>
     <tbody>
-      {#each students as student, Index}
+      {#each students as student, index}
         <tr class="hover:shadow-2xl hover:text-black hover:bg-white">
-          <td class="py-2 px-4 border-b">{Index + 1}</td>
+          <td class="py-2 px-4 border-b">{index + 1}</td>
           <td class="py-2 px-4 border-b">{student.name}</td>
           <td class="py-2 px-4 border-b">{student.gender}</td>
           <td class="py-2 px-4 border-b">{student.age}</td>

@@ -7,7 +7,7 @@
   let editingStudent = null;
 
   onMount(async () => {
-    const data = await fetch("/studentsData.json"); // Make sure this path is correct
+    const data = await fetch("/studentsData.json");
     const result = await data.json();
     students = result;
   });
@@ -31,6 +31,9 @@
 
   function startEditing(event) {
     editingStudent = event.detail;
+    // $: {
+    //   console.log(editingStudent);
+    // }
   }
 </script>
 
