@@ -1,53 +1,106 @@
 <script>
-  const tabs = [
-    { name: "Home", link: "/" },
-    { name: "Item 1", link: "#item1" },
-    { name: "Item 2", link: "#item2" },
-  ];
+  import { authStore } from "$lib/stores/authStore";
+  import { get } from "svelte/store";
+  import { page } from "$app/stores";
+
+  let authState;
+
+  $: authState = get(authStore);
+
+  function handleLogout() {
+    authStore.logout();
+    window.location.href = "/login";
+  }
+
+  let tabs = [{ name: "Home", link: "/" }];
+
+  $: {
+    tabs = [{ name: "Home", link: "/" }];
+    if (authState.isAuthenticated) {
+      tabs.push({ name: "Protected", link: "/protected" });
+      if (authState.role === "admin") {
+        tabs.push({ name: "Dashboard", link: "/dashboard" });
+      }
+    }
+  }
+
+  $: currentPath = $page.url.pathname;
 </script>
 
-<div class="max-w-7xl mx-auto mb-16">
-  <h2 class="text-3xl font-bold text-green-500 text-center py-5">
-    Student Management svelte
-  </h2>
-  <div class="navbar shadow-lg">
-    <div class="navbar-start">
-      <div class="dropdown">
-        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+<div class="mx-auto mb-4 shadow-lg border-b-2">
+  <div class="navbar max-w-7xl mx-auto p-4">
+    <div class="navbar-start flex items-center">
+      <div class="dropdown lg:hidden">
+        <button tabindex="0" class="btn btn-ghost">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            ><path
+          >
+            <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
               d="M4 6h16M4 12h8m-8 6h16"
-            /></svg
-          >
-        </div>
+            />
+          </svg>
+        </button>
         <ul
           tabindex="0"
-          class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52"
         >
-          {#each tabs as tab, index}
-            <li><a href={tab.link}> {tab.name}</a></li>
+          {#each tabs as tab}
+            <li>
+              <a
+                href={tab.link}
+                class={`${currentPath === tab.link ? "active" : ""} block px-4 py-2 text-gray-700 hover:text-green-500`}
+              >
+                {tab.name}
+              </a>
+            </li>
           {/each}
         </ul>
       </div>
-      <a href="/" class="btn btn-ghost text-xl">daisyUI</a>
+      <a href="/" class="md:text-2xl text-sm font-bold text-green-500 ml-4"
+        >Student Management</a
+      >
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
-        {#each tabs as tab, index}
-          <li><a href={tab.link}>{tab.name}</a></li>
+        {#each tabs as tab}
+          <li>
+            <a
+              href={tab.link}
+              class={` hover:text-green-500 ${currentPath === tab.link ? "active" : ""} px-4 py-2`}
+              >{tab.name}</a
+            >
+          </li>
         {/each}
       </ul>
     </div>
-    <div class="navbar-end">
-      <button class="btn rounded-2xl">Profile</button>
+    <div class="navbar-end flex items-center space-x-4">
+      {#if authState.isAuthenticated}
+        <p class="inline-block">Welcome, {authState.user}</p>
+        <button
+          on:click={handleLogout}
+          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          >Logout</button
+        >
+      {:else}
+        <a
+          href="/login"
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          >Login</a
+        >
+      {/if}
     </div>
   </div>
 </div>
+
+<style>
+  .active {
+    @apply text-green-500 font-bold;
+  }
+</style>
