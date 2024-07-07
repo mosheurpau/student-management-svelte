@@ -6,10 +6,45 @@
   let students = [];
   let editingStudent = null;
 
+  const query = `
+  query allStudents {
+    students {
+      id
+      name
+      age
+      gender
+      country
+      state
+      city
+      agreed
+    }
+  }
+`;
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query }),
+  };
+
   onMount(async () => {
-    const data = await fetch("/studentsData.json");
-    const result = await data.json();
-    students = result;
+    try {
+      const response = await fetch("http://localhost:4000/graphql", options);
+      const data = await response.json();
+      // console.log("ddd", data);
+      if (data.errors) {
+        console.error("GraphQL errors:", data.errors);
+        // Handle errors
+      } else {
+        students = data.data.students;
+        console.log(students);
+        // Access the fetched student data in `students`
+      }
+    } catch (error) {
+      console.error("Error fetching students:", error);
+    }
   });
 
   function addStudent(event) {

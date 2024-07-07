@@ -15,7 +15,6 @@
   let agreed = false;
 
   const countryChange = () => {
-    // Reset state selection when country changes
     state = "";
   };
 
@@ -33,21 +32,15 @@
   };
 
   $: if (editingStudent) {
-    name = editingStudent.name;
-    age = editingStudent.age;
-    gender = editingStudent.gender;
-    country = editingStudent.country;
-    state = editingStudent.state;
-    city = editingStudent.city;
+    ({ name, age, gender, country, state, city } = editingStudent);
     agreed = true;
-    editingStudent = null; // Ensure it only sets once
+    editingStudent = null;
   }
 
   function addStudent() {
     if (name && age && gender && country && state && city && agreed) {
-      const id = editingStudent ? editingStudent.id : Date.now();
-
-      dispatch("add", { id, name, age, gender, country, state, city });
+      const student = { name, age, gender, country, state, city, agreed };
+      dispatch("add", student);
       resetForm();
     } else {
       alert("Please fill in all fields");
@@ -62,7 +55,6 @@
     state = "";
     city = "";
     agreed = false;
-    dispatch("cancel");
   }
 </script>
 
