@@ -60,8 +60,45 @@
     }
   }
 
-  function deleteStudent(event) {
-    students = students.filter((student) => student.id !== event.detail.id);
+  // function deleteStudent(event) {
+  //   students = students.filter((student) => student.id !== event.detail.id);
+  // }
+
+  async function deleteStudent(event) {
+    let id = event.detail.id;
+    const response = await fetch("http://localhost:4000/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: `
+          mutation DeleteStudent($id: ID!) {
+            deleteStudent(id: $id) {
+              id
+              name
+              age
+              gender
+              country
+              state
+              city
+              agreed
+            }
+          }
+        `,
+        variables: {
+          id,
+        },
+      }),
+    });
+
+    const result = await response.json();
+    if (result.data.deleteStudent) {
+      students = students.filter((student) => student.id !== event.detail.id);
+      alert("Student deleted successfully:", result.data.deleteStudent);
+    } else {
+      alert("Failed to delete student:", result.errors);
+    }
   }
 
   function startEditing(event) {

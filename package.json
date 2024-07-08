@@ -20,6 +20,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@apollo/client": "^3.10.8",
 		"@urql/svelte": "^4.2.0",
 		"graphql": "^16.9.0",
 		"svelte-store": "^0.0.2"
