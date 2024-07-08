@@ -47,7 +47,7 @@
     }
   });
 
-  function addStudent(event) {
+  async function addStudent(event) {
     if (editingStudent) {
       students = students.map((student) =>
         student.id === editingStudent.id
@@ -57,12 +57,56 @@
       editingStudent = null;
     } else {
       students = [...students, event.detail];
+      let name = event.detail.name;
+      let age = event.detail.age;
+      let gender = event.detail.gender;
+      let country = event.detail.country;
+      let state = event.detail.state;
+      let city = event.detail.city;
+      let agreed = event.detail.agreed;
+      // console.log("EEEEEEE", event.detail);
+
+      const response = await fetch("http://localhost:4000/graphql", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `
+          mutation addStudent($student: AddStudent!) {
+          addStudent(student: $student) {
+              name
+              age
+              gender
+              country
+              state
+              city
+              agreed
+          }
+          }
+        `,
+          variables: {
+            student: {
+              name,
+              age,
+              gender,
+              country,
+              state,
+              city,
+              agreed,
+            },
+          },
+        }),
+      });
+
+      const result = await response.json();
+      if (result.data.addStudent) {
+        alert("Student added successfully");
+      } else {
+        alert("Failed to add student:");
+      }
     }
   }
-
-  // function deleteStudent(event) {
-  //   students = students.filter((student) => student.id !== event.detail.id);
-  // }
 
   async function deleteStudent(event) {
     let id = event.detail.id;
