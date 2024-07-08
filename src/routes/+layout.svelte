@@ -6,7 +6,7 @@
 
   export const load = async () => {
     const client = createClient({
-      url: "https://student-management-server-side.onrender.com", // Ensure the correct URL endpoint
+      url: "hhttp://localhost:4000", // Ensure the correct URL endpoint
     });
 
     setContextClient(client);
