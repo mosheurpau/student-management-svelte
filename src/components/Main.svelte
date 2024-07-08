@@ -48,23 +48,80 @@
   });
 
   async function addStudent(event) {
+    let name = event.detail.name;
+    let age = event.detail.age;
+    let gender = event.detail.gender;
+    let country = event.detail.country;
+    let state = event.detail.state;
+    let city = event.detail.city;
+    let agreed = event.detail.agreed;
     if (editingStudent) {
-      students = students.map((student) =>
-        student.id === editingStudent.id
-          ? { ...student, ...event.detail }
-          : student
-      );
-      editingStudent = null;
+      // console.log("EditingStudent:", editingStudent);
+      // console.log("Event:", event.detail.name);
+
+      let id = editingStudent.id;
+
+      // Perform the asynchronous operation outside the map function
+      (async () => {
+        const response = await fetch("http://localhost:4000/graphql", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+          mutation updateStudent($id: ID!, $edits: EditStudentInput!) {
+            updateStudent(id: $id, edits: $edits) {
+              id
+              name
+              age
+              gender
+              country
+              state
+              city
+              agreed
+            }
+          }
+        `,
+            variables: {
+              id,
+              edits: {
+                name,
+                age,
+                gender,
+                country,
+                state,
+                city,
+                agreed,
+              },
+            },
+          }),
+        });
+
+        const result = await response.json();
+        if (result.data.updateStudent) {
+          console.log(
+            "Student updated successfully:",
+            result.data.updateStudent
+          );
+
+          // Update the students array after a successful update
+          students = students.map((student) => {
+            if (student.id === editingStudent.id) {
+              return { ...student, ...event.detail };
+            } else {
+              return student;
+            }
+          });
+        } else {
+          console.log("Failed to update student:", result.errors);
+        }
+
+        // Reset editingStudent
+        editingStudent = null;
+      })();
     } else {
       students = [...students, event.detail];
-      let name = event.detail.name;
-      let age = event.detail.age;
-      let gender = event.detail.gender;
-      let country = event.detail.country;
-      let state = event.detail.state;
-      let city = event.detail.city;
-      let agreed = event.detail.agreed;
-      // console.log("EEEEEEE", event.detail);
 
       const response = await fetch("http://localhost:4000/graphql", {
         method: "POST",
@@ -147,6 +204,7 @@
 
   function startEditing(event) {
     editingStudent = event.detail;
+
     // $: {
     //   console.log(editingStudent);
     // }
