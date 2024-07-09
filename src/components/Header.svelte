@@ -72,7 +72,7 @@
           <input
             type="text"
             placeholder="Search..."
-            class="input input-bordered w-32 md:w-auto pl-10 focus:border-green-500"
+            class="input sm:input-bordered w-28 md:w-auto pl-10 focus:border-green-500"
           />
           <div
             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
@@ -162,7 +162,7 @@
 
     <!-- Center content (for large screens) -->
     <div class="navbar-center lg:flex z-10">
-      <ul class="menu menu-horizontal px-1">
+      <ul class="menu menu-horizontal hidden lg:inline-flex px-1">
         <li>
           <span class="hover:text-green-500"><Icon src={Sun} size="26" /></span>
         </li>
