@@ -3,9 +3,7 @@
   import { get } from "svelte/store";
   import { page } from "$app/stores";
   import {
-    ArrowRight,
     ArrowRightCircle,
-    ArrowUp,
     BellAlert,
     CheckBadge,
     ChevronRight,
@@ -14,6 +12,7 @@
     Home,
     Icon,
     MagnifyingGlass,
+    Power,
     ShieldCheck,
     Sun,
     XCircle,
@@ -73,7 +72,7 @@
           <input
             type="text"
             placeholder="Search..."
-            class="input input-bordered w-24 md:w-auto pl-10 focus:border-green-500"
+            class="input input-bordered w-32 md:w-auto pl-10 focus:border-green-500"
           />
           <div
             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
@@ -100,7 +99,7 @@
           <!-- Sidebar content here -->
           <li>
             <p
-              class="md:text-2xl text-sm font-bold text-green-500 hover:cursor-text"
+              class="md:text-2xl text-lg font-bold text-green-500 hover:cursor-text"
             >
               Student Management
             </p>
@@ -132,14 +131,22 @@
             </div>
             <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
             <ul tabindex="0" class="dropdown-content bg-transparent">
-              <li>
+              {#if authState.isAuthenticated}
+                <button
+                  on:click={handleLogout}
+                  class="px-4 py-2 hover:text-red-500 inline-flex"
+                  ><span class="mt-1 mr-2"><Icon src={Power} size="16" /></span
+                  >Logout</button
+                >
+              {:else}
                 <a
                   href="/login"
                   class="px-4 py-2 hover:text-green-500 inline-flex"
-                  ><span><Icon src={ArrowRightCircle} size="16" /></span
+                  ><span class="mt-1 mr-2"
+                    ><Icon src={ArrowRightCircle} size="16" /></span
                   >Login</a
                 >
-              </li>
+              {/if}
               <li>
                 <a
                   href="/register"
@@ -154,7 +161,7 @@
     </div>
 
     <!-- Center content (for large screens) -->
-    <div class="navbar-center hidden lg:flex z-10">
+    <div class="navbar-center lg:flex z-10">
       <ul class="menu menu-horizontal px-1">
         <li>
           <span class="hover:text-green-500"><Icon src={Sun} size="26" /></span>
@@ -198,13 +205,13 @@
               <p class="inline-block">Welcome, {authState.user}</p>
               <button
                 on:click={handleLogout}
-                class=" bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded"
+                class=" bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded my-2"
                 >Logout</button
               >
             {:else}
               <a
                 href="/login"
-                class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded my-2"
                 >Login</a
               >
             {/if}
