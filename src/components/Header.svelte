@@ -19,12 +19,21 @@
   } from "svelte-hero-icons";
 
   let authState;
+  let isDarkMode = false;
 
   $: authState = get(authStore);
 
   function handleLogout() {
     authStore.logout();
     window.location.href = "/login";
+  }
+
+  function toggleTheme() {
+    isDarkMode = !isDarkMode;
+    document.documentElement.setAttribute(
+      "data-theme",
+      isDarkMode ? "dark" : "light"
+    );
   }
 
   let tabs = [{ name: "Home", link: "/" }];
@@ -164,7 +173,12 @@
     <div class="navbar-center lg:flex z-10">
       <ul class="menu menu-horizontal hidden lg:inline-flex px-1">
         <li>
-          <span class="hover:text-green-500"><Icon src={Sun} size="26" /></span>
+          <span
+            class="hover:text-green-500 cursor-pointer"
+            on:click={toggleTheme}
+          >
+            <Icon src={Sun} size="26" />
+          </span>
         </li>
         <li>
           <span class="hover:text-green-500"
@@ -225,5 +239,17 @@
 <style>
   .active {
     @apply text-green-500 font-bold;
+  }
+
+  :global(.dark .navbar) {
+    @apply bg-gray-900 text-white;
+  }
+
+  :global(.dark .menu) {
+    @apply bg-gray-800 text-white;
+  }
+
+  :global(.dark .input) {
+    @apply bg-gray-700 text-white;
   }
 </style>

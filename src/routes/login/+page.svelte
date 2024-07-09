@@ -18,7 +18,7 @@
   }
 </script>
 
-<div class="mb-20">
+<div class="mb-20 mx-2">
   <form
     on:submit|preventDefault={handleLogin}
     class="max-w-sm mx-auto mt-20 p-6 rounded-lg shadow-md border-2"
