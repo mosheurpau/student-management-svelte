@@ -223,11 +223,19 @@
   }
 </script>
 
-<div class="flex flex-wrap min-h-screen">
-  <div class="w-full lg:w-1/3 p-4">
-    <AddStudent on:add={addStudent} {editingStudent} />
+{#if !!students}
+  <div class="flex flex-wrap min-h-screen">
+    <div class="w-full lg:w-1/3 p-4">
+      <AddStudent on:add={addStudent} {editingStudent} />
+    </div>
+    <div class="w-full lg:w-2/3 p-4">
+      <StudentList
+        {students}
+        on:delete={deleteStudent}
+        on:edit={startEditing}
+      />
+    </div>
   </div>
-  <div class="w-full lg:w-2/3 p-4">
-    <StudentList {students} on:delete={deleteStudent} on:edit={startEditing} />
-  </div>
-</div>
+{:else}
+  <p class="text-center text-green-500 my-40">Loading Students data...</p>
+{/if}
