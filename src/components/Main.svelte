@@ -5,6 +5,7 @@
 
   let students = [];
   let editingStudent = null;
+  let loading = true;
 
   const query = `
   query allStudents {
@@ -47,6 +48,8 @@
       }
     } catch (error) {
       console.error("Error fetching students:", error);
+    } finally {
+      loading = false; // Set loading to false after data fetching completes
     }
   });
 
@@ -216,14 +219,17 @@
 
   function startEditing(event) {
     editingStudent = event.detail;
-
-    // $: {
-    //   console.log(editingStudent);
-    // }
   }
 </script>
 
-{#if !!students}
+{#if loading}
+  <div class="text-center text-green-500 my-40">
+    <p>
+      Loading Students data from GQL Server... <br />
+      <progress class="progress w-56"></progress>
+    </p>
+  </div>
+{:else}
   <div class="flex flex-wrap min-h-screen">
     <div class="w-full lg:w-1/3 p-4">
       <AddStudent on:add={addStudent} {editingStudent} />
@@ -236,6 +242,4 @@
       />
     </div>
   </div>
-{:else}
-  <p class="text-center text-green-500 my-40">Loading Students data...</p>
 {/if}
