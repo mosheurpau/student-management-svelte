@@ -15,6 +15,7 @@
     Power,
     ShieldCheck,
     Sun,
+    UserGroup,
     XCircle,
   } from "svelte-hero-icons";
 
@@ -101,7 +102,7 @@
         checked="lg"
       />
 
-      <div class="drawer-side">
+      <div class="drawer-side z-50">
         <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
         ></label>
         <ul class="menu bg-base-200 text-base-content min-h-full w-52 p-4">
@@ -116,6 +117,13 @@
           <li>
             <a href="/" class="px-4 py-2 hover:text-green-500 inline-flex"
               ><span><Icon src={Home} size="16" /></span> Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="/students"
+              class="px-4 py-2 hover:text-green-500 inline-flex"
+              ><span><Icon src={UserGroup} size="16" /></span> Students</a
             >
           </li>
           <li>
@@ -157,9 +165,7 @@
                 >
               {/if}
               <li>
-                <a
-                  href="/register"
-                  class="px-4 py-2 hover:text-green-500 inline-flex"
+                <a href="/" class="px-4 py-2 hover:text-green-500 inline-flex"
                   ><span><Icon src={XCircle} size="16" /></span>Register</a
                 >
               </li>
@@ -173,12 +179,12 @@
     <div class="navbar-center lg:flex z-10">
       <ul class="menu menu-horizontal hidden lg:inline-flex px-1">
         <li>
-          <span
-            class="hover:text-green-500 cursor-pointer"
+          <button
+            class="btn btn-ghost hover:text-green-500 cursor-pointer hover:rotate-180 duration-1000 border-none rounded-full !bg-transparent"
             on:click={toggleTheme}
           >
             <Icon src={Sun} size="26" />
-          </span>
+          </button>
         </li>
         <li>
           <span class="hover:text-green-500"
