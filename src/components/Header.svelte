@@ -55,7 +55,7 @@
   $: currentPath = $page.url.pathname;
 </script>
 
-<div class="mx-auto mb-4 shadow-lg border-b-2 navbar">
+<div class=" mb-4 shadow-lg border-b-2 navbar">
   <div class="navbar max-w-6xl mx-auto px-2">
     <div class="navbar-start flex items-center">
       <!-- Drawer content (for large screens) -->
@@ -77,7 +77,7 @@
           {/if}
         </button>
       </div>
-      <div class="form-control">
+      <div class="form-control max-w-6xl">
         <div class="relative">
           <input
             type="text"
@@ -85,7 +85,7 @@
             class="input sm:input-bordered w-28 md:w-auto pl-10 focus:border-green-500"
           />
           <div
-            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            class="absolute inset-y-0 flex items-center pl-3 pointer-events-none"
           >
             <Icon src={MagnifyingGlass} size="16" />
           </div>
@@ -194,7 +194,7 @@
 
     <!-- Center content (for large screens) -->
     <div class="navbar-center lg:flex z-10">
-      <ul class="menu menu-horizontal hidden lg:inline-flex px-1">
+      <ul class="menu menu-horizontal px-1">
         <li>
           <button
             class="btn btn-ghost hover:text-green-500 cursor-pointer hover:rotate-180 duration-1000 border-none rounded-full !bg-transparent"
@@ -205,14 +205,14 @@
         </li>
         <li>
           <button
-            class="btn btn-ghost hover:text-green-500 cursor-pointer border-none rounded-full !bg-transparent hover:animate-rotate-lr-3"
+            class="btn btn-ghost hover:text-green-500 cursor-pointer border-none rounded-full !bg-transparent hover:animate-rotate-lr-3 hidden lg:inline-flex"
           >
             <Icon src={BellAlert} size="26" />
           </button>
         </li>
         <li>
           <button
-            class="btn btn-ghost hover:text-green-500 cursor-pointer hover:rotate-180 duration-1000 border-none rounded-full !bg-transparent"
+            class="btn btn-ghost hover:text-green-500 cursor-pointer hover:rotate-180 duration-1000 border-none rounded-full !bg-transparent hidden lg:inline-flex"
             ><Icon src={Cog6Tooth} size="26" /></button
           >
         </li>
