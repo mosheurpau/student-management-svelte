@@ -51,7 +51,12 @@
 </script>
 
 {#if loading}
-  <p class="text-center text-gray-500 mt-8">Loading student data...</p>
+  <div class="text-center text-green-500 my-40">
+    <p>
+      Loading Students data from GQL Server... <br />
+      <progress class="progress w-56"></progress>
+    </p>
+  </div>
 {:else}
   <div class="my-8 max-w-6xl mx-auto">
     <h2 class="text-center text-3xl font-bold my-6 text-green-500">

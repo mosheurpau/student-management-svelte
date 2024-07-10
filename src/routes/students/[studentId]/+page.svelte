@@ -56,7 +56,12 @@
 </script>
 
 {#if loading}
-  <p>Loading...</p>
+  <div class="text-center text-green-500 my-40">
+    <p>
+      Loading Students data from GQL Server... <br />
+      <progress class="progress w-56"></progress>
+    </p>
+  </div>
 {:else if error}
   <p>{error}</p>
 {:else}
@@ -79,6 +84,9 @@
           </div>
           <button class="btn btn-outline"
             >Agreed: {student.agreed ? "Yes" : "No"}</button
+          >
+          <button class="btn btn-outline" on:click={() => window.history.back()}
+            >Go Back</button
           >
         </div>
       </div>

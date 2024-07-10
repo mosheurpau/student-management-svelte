@@ -4,6 +4,7 @@
   import { page } from "$app/stores";
   import {
     ArrowRightCircle,
+    Bars3BottomLeft,
     BellAlert,
     CheckBadge,
     ChevronRight,
@@ -17,10 +18,12 @@
     Sun,
     UserGroup,
     XCircle,
+    XMark,
   } from "svelte-hero-icons";
 
   let authState;
   let isDarkMode = false;
+  let isDrawerOpen = true;
 
   $: authState = get(authStore);
 
@@ -52,30 +55,27 @@
   $: currentPath = $page.url.pathname;
 </script>
 
-<div class="mx-auto mb-4 shadow-lg border-b-2">
-  <div class="navbar max-w-6xl mx-auto p-4">
+<div class="mx-auto mb-4 shadow-lg border-b-2 navbar">
+  <div class="navbar max-w-6xl mx-auto px-2">
     <div class="navbar-start flex items-center">
       <!-- Drawer content (for large screens) -->
-
       <div class="drawer-content lg:visible">
         <!-- Page content here -->
-
-        <label for="my-drawer" class="btn btn-primary drawer-button btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-8 w-8"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h7"
+        <button
+          for="my-drawer"
+          class="btn drawer-button btn-ghost !bg-transparent hover:text-green-500"
+          on:click={() => (isDrawerOpen = !isDrawerOpen)}
+        >
+          {#if isDrawerOpen}
+            <Icon
+              class="text-red-500 hover:text-red-700"
+              src={XMark}
+              size="32"
             />
-          </svg>
-        </label>
+          {:else}
+            <Icon class="" src={Bars3BottomLeft} size="32" />
+          {/if}
+        </button>
       </div>
       <div class="form-control">
         <div class="relative">
@@ -99,12 +99,16 @@
         id="my-drawer"
         type="checkbox"
         class="drawer-toggle"
-        checked="lg"
+        bind:checked={isDrawerOpen}
       />
 
       <div class="drawer-side z-50">
-        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"
-        ></label>
+        <button
+          for="my-drawer"
+          aria-label="close sidebar"
+          class="drawer-overlay"
+          on:click={() => (isDrawerOpen = !isDrawerOpen)}
+        ></button>
         <ul class="menu bg-base-200 text-base-content min-h-full w-52 p-4">
           <!-- Sidebar content here -->
           <li>
@@ -115,28 +119,41 @@
             </p>
           </li>
           <li>
-            <a href="/" class="px-4 py-2 hover:text-green-500 inline-flex"
-              ><span><Icon src={Home} size="16" /></span> Home</a
+            <a
+              href="/"
+              class="px-4 py-2 hover:text-green-500 inline-flex {currentPath ===
+              '/'
+                ? 'active'
+                : ''}"><span><Icon src={Home} size="16" /></span> Home</a
             >
           </li>
           <li>
             <a
               href="/students"
-              class="px-4 py-2 hover:text-green-500 inline-flex"
+              class="px-4 py-2 hover:text-green-500 inline-flex {currentPath ===
+              '/students'
+                ? 'active'
+                : ''}"
               ><span><Icon src={UserGroup} size="16" /></span> Students</a
             >
           </li>
           <li>
             <a
               href="/protected"
-              class="px-4 py-2 hover:text-green-500 inline-flex"
+              class="px-4 py-2 hover:text-green-500 inline-flex {currentPath ===
+              '/protected'
+                ? 'active'
+                : ''}"
               ><span><Icon src={FingerPrint} size="16" /></span> Protected</a
             >
           </li>
           <li>
             <a
               href="/dashboard"
-              class="px-4 py-2 hover:text-green-500 inline-flex"
+              class="px-4 py-2 hover:text-green-500 inline-flex {currentPath ===
+              '/dashboard'
+                ? 'active'
+                : ''}"
               ><span><Icon src={CheckBadge} size="16" /></span>Dashboard</a
             >
           </li>
@@ -187,13 +204,16 @@
           </button>
         </li>
         <li>
-          <span class="hover:text-green-500"
-            ><Icon src={BellAlert} size="26" /></span
+          <button
+            class="btn btn-ghost hover:text-green-500 cursor-pointer border-none rounded-full !bg-transparent hover:animate-rotate-lr-3"
           >
+            <Icon src={BellAlert} size="26" />
+          </button>
         </li>
         <li>
-          <span class="hover:text-green-500"
-            ><Icon src={Cog6Tooth} size="26" /></span
+          <button
+            class="btn btn-ghost hover:text-green-500 cursor-pointer hover:rotate-180 duration-1000 border-none rounded-full !bg-transparent"
+            ><Icon src={Cog6Tooth} size="26" /></button
           >
         </li>
       </ul>
@@ -243,12 +263,8 @@
 </div>
 
 <style>
-  .active {
+  :global(.active) {
     @apply text-green-500 font-bold;
-  }
-
-  :global(.dark .navbar) {
-    @apply bg-gray-900 text-white;
   }
 
   :global(.dark .menu) {
