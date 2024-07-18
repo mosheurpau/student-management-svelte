@@ -110,7 +110,7 @@
         const result = await response.json();
         if (result.data.updateStudent) {
           console.log(
-            "Student updated successfully:",
+            "Student updated successfully",
             result.data.updateStudent
           );
 
@@ -123,7 +123,7 @@
             }
           });
         } else {
-          console.log("Failed to update student:", result.errors);
+          console.log("Failed to update student", result.errors);
         }
 
         // Reset editingStudent
@@ -211,7 +211,7 @@
     const result = await response.json();
     if (result.data.deleteStudent) {
       students = students.filter((student) => student.id !== event.detail.id);
-      alert("Student deleted successfully:", result.data.deleteStudent);
+      alert("Student deleted successfully", result.data.deleteStudent);
     } else {
       alert("Failed to delete student:", result.errors);
     }

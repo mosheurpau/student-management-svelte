@@ -1,4 +1,6 @@
-<footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+<footer
+  class="footer footer-center p-10 bg-base-200 text-base-content rounded z-50"
+>
   <nav class="grid grid-flow-col gap-4">
     <a class="link link-hover" href="/">About us</a>
     <a class="link link-hover" href="/">Contact</a>
@@ -46,6 +48,6 @@
     </div>
   </nav>
   <aside>
-    <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
+    <p>Copyright © 2024 - All right reserved by Mosheur Rahman</p>
   </aside>
 </footer>

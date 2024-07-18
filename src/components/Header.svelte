@@ -23,7 +23,7 @@
 
   let authState;
   let isDarkMode = false;
-  let isDrawerOpen = true;
+  let isDrawerOpen = false;
 
   $: authState = get(authStore);
 
@@ -55,11 +55,11 @@
   $: currentPath = $page.url.pathname;
 </script>
 
-<div class=" mb-4 shadow-lg border-b-2 navbar">
-  <div class="navbar max-w-6xl mx-auto px-2">
-    <div class="navbar-start flex items-center">
+<div class=" mb-4 shadow-lg border-b-2 navbar flex md:hidden z-50">
+  <div class="navbar mx-auto px-2 max-w-7xl z-50">
+    <div class="navbar-start flex items-center z-50">
       <!-- Drawer content (for large screens) -->
-      <div class="drawer-content lg:visible">
+      <div class="drawer-content lg:visible z-50">
         <!-- Page content here -->
         <button
           for="my-drawer"
@@ -77,7 +77,7 @@
           {/if}
         </button>
       </div>
-      <div class="form-control max-w-6xl">
+      <div class="form-control max-w-6xl z-50">
         <div class="relative">
           <input
             type="text"
@@ -94,7 +94,7 @@
     </div>
 
     <!-- Drawer (sidebar) -->
-    <div class="drawer lg:visible">
+    <div class="drawer lg:visible z-10">
       <input
         id="my-drawer"
         type="checkbox"
@@ -102,7 +102,7 @@
         bind:checked={isDrawerOpen}
       />
 
-      <div class="drawer-side z-50">
+      <div class="drawer-side z-0">
         <button
           for="my-drawer"
           aria-label="close sidebar"
@@ -113,7 +113,7 @@
           <!-- Sidebar content here -->
           <li>
             <p
-              class="md:text-2xl text-lg font-bold text-green-500 hover:cursor-text"
+              class="md:text-2xl text-lg font-bold text-green-500 hover:cursor-text mt-20"
             >
               Student Management
             </p>

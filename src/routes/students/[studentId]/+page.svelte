@@ -52,7 +52,7 @@
     }
   });
 
-  console.log({ student });
+  // console.log({ student });
 </script>
 
 {#if loading}

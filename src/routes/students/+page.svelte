@@ -40,7 +40,7 @@
         // Handle errors
       } else {
         students = data.data.students;
-        console.log("ssssssss", students);
+        // console.log("ssssssss", students);
       }
     } catch (error) {
       console.error("Error fetching students:", error);
