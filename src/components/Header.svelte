@@ -55,11 +55,13 @@
   $: currentPath = $page.url.pathname;
 </script>
 
-<div class=" mb-4 shadow-lg border-b-2 navbar flex md:hidden z-50">
+<div
+  class=" mb-4 shadow-lg border-b-2 navbar flex md:hidden z-50 bg-base-200 bg-opacity-80"
+>
   <div class="navbar mx-auto px-2 max-w-7xl z-50">
     <div class="navbar-start flex items-center z-50">
       <!-- Drawer content (for large screens) -->
-      <div class="drawer-content lg:visible z-50">
+      <div class="drawer-content lg:visible z-50 relative">
         <!-- Page content here -->
         <button
           for="my-drawer"
@@ -77,12 +79,12 @@
           {/if}
         </button>
       </div>
-      <div class="form-control max-w-6xl z-50">
+      <div class="form-control z-0 absolute inset-x-20 flex">
         <div class="relative">
           <input
             type="text"
             placeholder="Search..."
-            class="input sm:input-bordered w-28 md:w-auto pl-10 focus:border-green-500"
+            class="input sm:input-bordered w-40 mx-auto md:w-auto pl-10 focus:border-green-500"
           />
           <div
             class="absolute inset-y-0 flex items-center pl-3 pointer-events-none"
@@ -264,7 +266,7 @@
 
 <style>
   :global(.active) {
-    @apply text-green-500 font-bold;
+    @apply !text-green-500 !bg-slate-200 font-bold;
   }
 
   :global(.dark .menu) {

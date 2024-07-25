@@ -10,10 +10,10 @@
 <TopBar />
 <Header />
 <div class="flex flex-wrap min-h-screen max-w-8xl mx-auto">
-  <div class="w-full md:w-2/12">
+  <div class="w-full md:w-1/12">
     <SideBar />
   </div>
-  <div class="w-full md:w-10/12 mx-auto">
+  <div class="w-full md:w-11/12 lg:pl-24 md:pl-4 mx-auto">
     <main class="flex-1 p-4 mt-2 md:mt-28">
       <slot />
     </main>

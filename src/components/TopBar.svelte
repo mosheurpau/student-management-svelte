@@ -1,14 +1,21 @@
 <script>
   import {
+    ArrowLeftStartOnRectangle,
+    ArrowRight,
+    Bars3BottomLeft,
     BellAlert,
+    ChevronDoubleLeft,
+    ChevronDoubleRight,
     Cog6Tooth,
     Icon,
     MagnifyingGlass,
     Sun,
+    XMark,
   } from "svelte-hero-icons";
   import { authStore } from "$lib/stores/authStore";
   import { get } from "svelte/store";
   import { page } from "$app/stores";
+  import { mStore } from "$lib/stores/menuStore";
   let authState;
   let isDarkMode = false;
   let isDrawerOpen = true;
@@ -27,12 +34,32 @@
       isDarkMode ? "dark" : "light"
     );
   }
+
+  console.log("Before", $mStore);
+  function handleMenuText() {
+    mStore.update((mStore) => !mStore);
+    console.log("After", $mStore);
+  }
 </script>
 
 <nav
-  class=" max-w-[1550px] border-b border-gray-200 p-4 items-center justify-between z-50 hidden md:flex fixed inset-x-0 mx-auto shadow-lg"
+  class=" max-w-[1550px] border-b border-gray-200 p-4 items-center justify-between z-50 hidden md:flex fixed inset-x-0 mx-auto shadow-lg bg-base-200 bg-opacity-80"
 >
   <div class="flex items-center space-x-4">
+    {#if $mStore === true}
+      <span class=" hover:text-green-500">
+        <button on:click={handleMenuText}>
+          <Icon class="mt-3" src={ChevronDoubleRight} size="24" />
+        </button>
+      </span>
+    {:else if $mStore === false}
+      <span class=" hover:text-red-500">
+        <button on:click={handleMenuText}>
+          <Icon class="mt-3" src={ChevronDoubleLeft} size="24" />
+        </button>
+      </span>
+    {/if}
+
     <p
       class="hidden md:block teext-lg md:text-2xl font-bold text-green-500 hover:cursor-text"
     >
@@ -80,7 +107,7 @@
       </ul>
       <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-          <div class="w-10 rounded-full">
+          <div class="w-10 rounded-full mt-3">
             <img
               alt="Tailwind CSS Navbar component"
               src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
